@@ -13,17 +13,17 @@ app.get("/repositories", (request, response) => {
 });
 
 app.post("/repositories", (request, response) => {
-  const { title, url, techs } = request.body
+  const { title, url, techs } = request.body;
 
   const repository = {
     id: uuid(),
     title,
     url,
     techs,
-    likes: 0
+    likes: 0,
   };
 
-  return response.json(repository);
+  return response.status(201).json(repository);
 });
 
 app.put("/repositories/:id", (request, response) => {
@@ -68,7 +68,7 @@ app.post("/repositories/:id/like", (request, response) => {
 
   const likes = ++repositories[repositoryIndex].likes;
 
-  return response.json('likes');
+  return response.json("likes");
 });
 
 module.exports = app;
